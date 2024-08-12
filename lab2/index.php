@@ -1,4 +1,7 @@
 <?php
+
+require "helpers/helper-functions.php";
+
 session_start();
 ?>
 <html>
@@ -15,7 +18,7 @@ session_start();
     <div class="col">
       <div class="p-section--shallow">
         <h1>
-          Welcome to IPT10!
+          Laboratory Activity #2<br />PHP Sessions and Functions
         </h1>
         <h2>
           Integrative Programming and Technologies
@@ -34,16 +37,18 @@ session_start();
 
         <p>
             <small>
-                Design System: <a href="https://vanillaframework.io/docs/examples">Vanilla Framework</a>
+                Design System: <a href="https://vanillaframework.io/docs">Vanilla Framework</a>
             </small>
         </p>
       </div>
     </div>
+
     <div class="col">
       <div class="p-image-container--3-2 is-cover">
-        <img class="p-image-container__image" src="https://assets.ubuntu.com/v1/cf1e2ddb-datacenter-wide-crop.jpeg" alt="">
+        <img class="p-image-container__image" src="https://www.auf.edu.ph/home/images/ittc.jpg" alt="">
       </div>
     </div>
+
   </div>
 </section>
 

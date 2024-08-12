@@ -1,17 +1,19 @@
 <?php
+
+require "helpers/helper-functions.php";
+
 session_start();
 
-$fullname = $_GET['fullname'];
-$email = $_GET['email'];
+$fullname = $_POST['fullname'];
+$email = $_POST['email'];
 # Encrypt the password first before saving it to the Session Variables
-$password = $_GET['password'];
+$password = $_POST['password'];
 
 $_SESSION['fullname'] = $fullname;
 $_SESSION['email'] = $email;
 $_SESSION['password'] = $password;
-echo '<pre>';
-print_r($_SESSION);
-echo '</pre>';
+
+dump_session();
 
 ?>
 <html>
@@ -32,30 +34,40 @@ echo '</pre>';
         </h1>
       </div>
       <div class="p-section--shallow">
+
+
         <form action="step-3.php" method="POST">
 
-            <fieldset>
-                <label>Birthdate</label>
-                <input type="date" name="birthdate">
+          <fieldset>
+            <label>Birthdate</label>
+            <input type="date" name="birthdate">
 
-                <label>Sex</label>
-                <br />
-                <input type="radio" name="sex" value="male">Male
-                <br />
-                <input type="radio" name="sex" value="female">Female
-                <br />
+            <label>Sex</label>
+            <br />
+            <input type="radio" name="sex" value="male" checked="checked">Male
+            <br />
+            <input type="radio" name="sex" value="female">Female
+            <br />
 
-                <label>Complete Address</label>
-                <textarea name="address" rows="3"></textarea>
+            <label>Complete Address</label>
+            <textarea name="address" rows="3"></textarea>
 
-                <button type="submit">Next</button>
-            </fieldset>
+            <button type="submit">Next</button>
+          </fieldset>
 
         </form>
-        </fieldset>
+
+
+      </div>
 
     </div>
+
+    <div class="col">
+      <div class="p-image-container--3-2 is-cover">
+        <img class="p-image-container__image" src="https://www.auf.edu.ph/home/images/ittc.jpg" alt="">
+      </div>
     </div>
+
   </div>
 </section>
 

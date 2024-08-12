@@ -1,19 +1,20 @@
 <?php
+
+require "helpers/helper-functions.php";
+
 session_start();
 
 $contact_number = $_POST['contact_number'];
 $program = $_POST['program'];
 $agree = $_POST['agree'];
 
-$form_data = $_SESSION;
-echo '<pre>';
-print_r($_SESSION);
-echo '</pre>';
-
 $_SESSION['contact_number'] = $contact_number;
 $_SESSION['program'] = $program;
 $_SESSION['agree'] = $agree;
 
+$form_data = $_SESSION;
+
+dump_session();
 
 session_destroy();
 ?>
@@ -49,7 +50,9 @@ session_destroy();
             ?>
                 <tr>
                     <th><?php echo $key; ?></th>
-                    <td><?php echo $val; ?></td>
+                    <td>
+                      <?php echo $val; ?>
+                    </td>
                 </tr>
             <?php
             endforeach;
