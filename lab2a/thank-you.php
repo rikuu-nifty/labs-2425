@@ -37,7 +37,7 @@ session_destroy();
       </div>
       <div class="p-section--shallow">
       
-        <table aria-label="Vanilla framework table example">
+        <table aria-label="Session Data">
             <thead>
                 <tr>
                     <th></th>
