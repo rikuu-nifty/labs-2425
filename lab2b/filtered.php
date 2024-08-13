@@ -2,7 +2,7 @@
 
 define('CUSTOMERS_FILE_PATH', 'customers-100.csv');
 
-function get_hundred_customers_data()
+function get_hundred_customers_data( $filter_letter )
 {
     $opened_file_handler = fopen(CUSTOMERS_FILE_PATH, 'r');
 
@@ -16,7 +16,9 @@ function get_hundred_customers_data()
             if ($row_count == 0) {
                 array_push($headers, $row);    
             } else {
-                array_push($data, $row);
+                if ($row[3][0] == $filter_letter) {
+                    array_push($data, $row);
+                }
             }
         }
 
@@ -30,7 +32,9 @@ function get_hundred_customers_data()
     ];
 }
 
-$customers = get_hundred_customers_data();
+$chosen_letter = $_GET['letter'];
+
+$customers = get_hundred_customers_data($chosen_letter);
 
 ?>
 <html>
@@ -43,7 +47,7 @@ $customers = get_hundred_customers_data();
 <body>
 
 <h1>
-    Customers
+    Customers (Letter '<?php echo $chosen_letter; ?>')
 </h1>
 <h4>
 <?php foreach(range('A', 'Z') as $letter): ?>
