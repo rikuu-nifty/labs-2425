@@ -4,17 +4,23 @@ require "helpers/helper-functions.php";
 
 session_start();
 
-$contact_number = $_POST['contact_number'];
-$program = $_POST['program'];
+$email = $_POST['email'];
+$password = md5($_POST['password']);
 $agree = $_POST['agree'];
+$birthdate = $_SESSION['birthdate'];
+$birthdateObject = new DateTime($birthdate);
+$now = new DateTime();
+$age = $now->diff($birthdateObject)->y;
 
-$_SESSION['contact_number'] = $contact_number;
-$_SESSION['program'] = $program;
+
+$_SESSION['email'] = $email;
+$_SESSION['password'] = $password;
 $_SESSION['agree'] = $agree;
+
 
 $form_data = $_SESSION;
 
-dump_session();
+
 
 session_destroy();
 ?>
@@ -57,6 +63,12 @@ session_destroy();
             <?php
             endforeach;
             ?>
+            <tr>
+                <th>Age</th>
+                <td>
+                  <?php echo $age; ?>
+                </td>
+            </tr>
             </tbody>
         </table>
       
