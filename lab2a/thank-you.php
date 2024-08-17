@@ -4,12 +4,23 @@ require "helpers/helper-functions.php";
 
 session_start();
 
-$email = $_POST['email'];
-$password = md5($_POST['password']);
-$agree = $_POST['agree'];
+$fullname = $_SESSION['fullname'];
 $birthdate = $_SESSION['birthdate'];
+$contact_number = $_SESSION['contact_number'];
+$sex = $_SESSION['sex'];
+$program = $_SESSION['program'];
+$address = $_SESSION['address'];
+$password = md5($_POST['password']);
+$email = $_POST['email'];
+$agree = $_POST['agree'];
+
+
 $birthdateObject = new DateTime($birthdate);
+
+
 $now = new DateTime();
+
+
 $age = $now->diff($birthdateObject)->y;
 
 
@@ -20,9 +31,26 @@ $_SESSION['agree'] = $agree;
 
 $form_data = $_SESSION;
 
+$csvFilePath = 'registrations.csv';
 
+
+$file = fopen($csvFilePath, 'a');
+
+fputcsv($file, [
+  $fullname,
+  $birthdate,
+  $age,
+  $contact_number,
+  $sex,
+  $program,
+  $address,
+  $email
+]);
+
+fclose($file);
 
 session_destroy();
+
 ?>
 <html>
 <head>

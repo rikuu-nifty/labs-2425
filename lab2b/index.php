@@ -1,14 +1,17 @@
 <?php
 
-define('CUSTOMERS_FILE_PATH', 'customers-100.csv');
+define('CUSTOMERS_FILE_PATH', 'customers-100000.csv');
 
 function get_hundred_customers_data()
 {
+    $start_time = microtime(true);
     $opened_file_handler = fopen(CUSTOMERS_FILE_PATH, 'r');
 
     $data = [];
     $headers = [];
     $row_count = 0;
+    $max_rows = 100000; 
+
     while (!feof($opened_file_handler)) {
 
         $row = fgetcsv($opened_file_handler, 1024);
@@ -21,8 +24,16 @@ function get_hundred_customers_data()
         }
 
         $row_count++;
-
+        if ($row_count >= $max_rows + 1) { 
+            break;
+        }
     }
+    fclose($opened_file_handler); 
+
+    $end_time = microtime(true);
+    $execution_time = $end_time - $start_time; 
+
+    echo "<p>Execution Time: {$execution_time} seconds</p>";
 
     return [
         'headers' => $headers,
@@ -79,7 +90,6 @@ The dataset is retrieved from this URL <a href="https://www.datablist.com/learn/
     ?>
     </tbody>
 </table>
-
 
 </body>
 </html>
